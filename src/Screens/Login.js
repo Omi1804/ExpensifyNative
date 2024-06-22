@@ -1,11 +1,12 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import ScreenWrapper from '../Components/ScreenWrapper';
 
 const Login = () => {
   return (
-    <View>
+    <ScreenWrapper>
       <Text>Login</Text>
-    </View>
+    </ScreenWrapper>
   );
 };
 
