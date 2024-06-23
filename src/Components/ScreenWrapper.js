@@ -9,12 +9,7 @@ const ScreenWrapper = ({children}) => {
         : 30
       : 0;
 
-  return (
-    <View style={{paddingTop: statusBarHeight}}>
-      {children}
-      <Text>{statusBarHeight}</Text>
-    </View>
-  );
+  return <View style={{paddingTop: statusBarHeight}}>{children}</View>;
 };
 
 export default ScreenWrapper;
