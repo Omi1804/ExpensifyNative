@@ -1,6 +1,7 @@
 import {
   FlatList,
   Image,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -9,6 +10,45 @@ import {
 import React from 'react';
 import ScreenWrapper from '../Components/ScreenWrapper';
 import {colors} from '../theme';
+import randomImage from '../../assets/randomImage';
+
+let items = [
+  {
+    id: 1,
+    place: 'Gujrat',
+    country: 'India',
+  },
+  {
+    id: 2,
+    place: 'Gujrat',
+    country: 'India',
+  },
+  {
+    id: 3,
+    place: 'Gujrat',
+    country: 'India',
+  },
+  {
+    id: 4,
+    place: 'Gujrat',
+    country: 'India',
+  },
+  {
+    id: 5,
+    place: 'Gujrat',
+    country: 'India',
+  },
+  {
+    id: 6,
+    place: 'Gujrat',
+    country: 'India',
+  },
+  {
+    id: 7,
+    place: 'Gujrat',
+    country: 'India',
+  },
+];
 
 const Home = () => {
   return (
@@ -27,7 +67,7 @@ const Home = () => {
           className="w-60 h-60"
         />
       </View>
-      <View className="px-4">
+      <View className="px-4 space-y-4">
         <View className="flex-row justify-between items-center">
           <Text className={`${colors.heading} font-bold text-xl`}>
             Recent Trips
@@ -36,7 +76,33 @@ const Home = () => {
             <Text className={colors.heading}>Add Trip</Text>
           </TouchableOpacity>
         </View>
-        <View></View>
+        <View style={{height: 430}}>
+          <FlatList
+            data={items}
+            numColumns={2}
+            keyExtractor={item => item.id}
+            showsVerticalScrollIndicator={false}
+            columnWrapperStyle={{
+              justifyContent: 'space-between',
+            }}
+            className="mx-1 "
+            renderItem={({item}) => {
+              return (
+                <TouchableOpacity className="bg-white p-3 rounded-2xl mb-3 shadow-sm">
+                  <View>
+                    <Image source={randomImage()} className="w-36 h-36 mb-2" />
+                    <Text className={`${colors.heading} font-bold`}>
+                      {item.place}
+                    </Text>
+                    <Text className={`${colors.heading} text-xs`}>
+                      {item.country}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              );
+            }}
+          />
+        </View>
       </View>
     </ScreenWrapper>
   );
