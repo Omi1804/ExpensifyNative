@@ -11,6 +11,8 @@ import React from 'react';
 import ScreenWrapper from '../Components/ScreenWrapper';
 import {colors} from '../theme';
 import randomImage from '../../assets/randomImage';
+import EmptyList from '../Components/emptyList';
+import {useNavigation} from '@react-navigation/native';
 
 let items = [
   {
@@ -51,6 +53,7 @@ let items = [
 ];
 
 const Home = () => {
+  const navigation = useNavigation();
   return (
     <ScreenWrapper className="flex-1">
       <View className="flex-row justify-between items-center p-4">
@@ -72,7 +75,9 @@ const Home = () => {
           <Text className={`${colors.heading} font-bold text-xl`}>
             Recent Trips
           </Text>
-          <TouchableOpacity className="p-2 px-3 bg-white border border-gray-200 rounded-full">
+          <TouchableOpacity
+            onPress={() => navigation.navigate('AddTrip')}
+            className="p-2 px-3 bg-white border border-gray-200 rounded-full">
             <Text className={colors.heading}>Add Trip</Text>
           </TouchableOpacity>
         </View>
@@ -80,6 +85,9 @@ const Home = () => {
           <FlatList
             data={items}
             numColumns={2}
+            ListEmptyComponent={
+              <EmptyList message={"You haven't recorded any trips yet"} />
+            }
             keyExtractor={item => item.id}
             showsVerticalScrollIndicator={false}
             columnWrapperStyle={{

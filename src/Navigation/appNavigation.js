@@ -2,6 +2,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from '../Screens/Home';
 import Login from '../Screens/Login';
+import AddExpenseScreen from '../Screens/AddExpenseScreen';
+import AddTripScreen from '../Screens/AddTripScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +20,16 @@ const appNavigation = () => {
           options={{headerShown: false}}
           name="Login"
           component={Login}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="AddExpense"
+          component={AddExpenseScreen}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="AddTrip"
+          component={AddTripScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
