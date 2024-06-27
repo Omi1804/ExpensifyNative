@@ -5,13 +5,19 @@ import Login from '../Screens/Login';
 import AddExpenseScreen from '../Screens/AddExpenseScreen';
 import AddTripScreen from '../Screens/AddTripScreen';
 import TripExpensesScreen from '../Screens/TripExpensesScreen';
+import WelcomScreen from '../Screens/WelcomScreen';
 
 const Stack = createNativeStackNavigator();
 
 const appNavigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Welcome">
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Welcome"
+          component={WelcomScreen}
+        />
         <Stack.Screen
           options={{headerShown: false}}
           name="Home"

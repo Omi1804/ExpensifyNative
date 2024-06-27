@@ -14,7 +14,8 @@ let items = [
   {id: 3, title: 'ate sandwich', amount: 4, category: 'food'},
 ];
 
-const TripExpensesScreen = () => {
+const TripExpensesScreen = props => {
+  const {id, place, country} = props.route.params;
   const navigation = useNavigation();
   return (
     <ScreenWrapper className="flex-1">
@@ -23,9 +24,14 @@ const TripExpensesScreen = () => {
           <View className="absolute top-0 left-0 z-50">
             <BackButton />
           </View>
-          <Text className={`${colors.heading} text-xl font-bold text-center`}>
-            Add Trip
-          </Text>
+          <View>
+            <Text className={`${colors.heading} text-xl font-bold text-center`}>
+              {place}
+            </Text>
+            <Text className={`${colors.heading} text-xs  text-center`}>
+              {country}
+            </Text>
+          </View>
         </View>
         <View className="flex-row justify-center items-center rounded-xl mb-4">
           <Image source={require('../../assets/7.png')} className="w-80 h-80" />
@@ -36,7 +42,7 @@ const TripExpensesScreen = () => {
               Expenses
             </Text>
             <TouchableOpacity
-              onPress={() => navigation.navigate('AddTrip')}
+              onPress={() => navigation.navigate('AddExpense')}
               className="p-2 px-3 bg-white border border-gray-200 rounded-full">
               <Text className={colors.heading}>Add Expense</Text>
             </TouchableOpacity>
