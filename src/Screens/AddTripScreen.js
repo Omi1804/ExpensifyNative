@@ -23,7 +23,7 @@ const AddTripScreen = () => {
       <View className="flex justify-between h-full mx-4">
         <View>
           <View className="relative mt-5">
-            <View className="absolute top-0 left-0">
+            <View className="absolute top-0 left-0 z-50">
               <BackButton />
             </View>
             <Text className={`${colors.heading} text-xl font-bold text-center`}>
