@@ -4,20 +4,44 @@ import ScreenWrapper from '../Components/ScreenWrapper';
 import {colors} from '../theme';
 import BackButton from '../Components/backButton';
 import {useNavigation} from '@react-navigation/native';
+import Snackbar from 'react-native-snackbar';
+import {createUserWithEmailAndPassword} from 'firebase/auth';
+import {auth} from '../config/firebase';
+import {useDispatch, useSelector} from 'react-redux';
+import {setUserLoading} from '../redux/slices/user';
 
 const SignUpScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const {userLoading} = useSelector(state => state.user);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (email && password) {
-      navigation.navigate('Home');
+      // good to go
+      // navigation.goBack();
+      // navigation.navigate('Home');
+
+      try {
+        dispatch(setUserLoading(true));
+        await createUserWithEmailAndPassword(auth, email, password);
+        dispatch(setUserLoading(false));
+      } catch (e) {
+        dispatch(setUserLoading(false));
+        Snackbar.show({
+          text: e.message,
+          backgroundColor: 'red',
+        });
+      }
     } else {
+      // show error
+      Snackbar.show({
+        text: 'Email and Password are required!',
+        backgroundColor: 'red',
+      });
     }
   };
-
   return (
     <ScreenWrapper>
       <View className="flex justify-between h-full mx-4">
@@ -41,7 +65,7 @@ const SignUpScreen = () => {
             <Text className={`${colors.heading} text-lg font-bold`}>Email</Text>
             <TextInput
               value={email}
-              onChange={value => setEmail(value)}
+              onChangeText={value => setEmail(value)}
               className="bg-white p-4 rounded-full mb-3"
             />
             <Text className={`${colors.heading} text-lg font-bold`}>
@@ -50,7 +74,7 @@ const SignUpScreen = () => {
             <TextInput
               value={password}
               secureTextEntry
-              onChange={value => setPassword(value)}
+              onChangeText={value => setPassword(value)}
               className="bg-white p-4 rounded-full mb-3"
             />
           </View>

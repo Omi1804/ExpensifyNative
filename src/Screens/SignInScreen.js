@@ -41,7 +41,7 @@ const SignInScreen = () => {
             <Text className={`${colors.heading} text-lg font-bold`}>Email</Text>
             <TextInput
               value={email}
-              onChange={value => setEmail(value)}
+              onChangeText={value => setEmail(value)}
               className="bg-white p-4 rounded-full mb-3"
             />
             <Text className={`${colors.heading} text-lg font-bold`}>
@@ -50,7 +50,7 @@ const SignInScreen = () => {
             <TextInput
               value={password}
               secureTextEntry
-              onChange={value => setPassword(value)}
+              onChangeText={value => setPassword(value)}
               className="bg-white p-4 rounded-full mb-3"
             />
             <TouchableOpacity className="flex-row justify-end">
