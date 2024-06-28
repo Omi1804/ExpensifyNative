@@ -1,11 +1,12 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from '../Screens/Home';
-import Login from '../Screens/Login';
 import AddExpenseScreen from '../Screens/AddExpenseScreen';
 import AddTripScreen from '../Screens/AddTripScreen';
 import TripExpensesScreen from '../Screens/TripExpensesScreen';
 import WelcomScreen from '../Screens/WelcomScreen';
+import SignInScreen from '../Screens/SignInScreen';
+import SignUpScreen from '../Screens/SignUpScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,11 +26,6 @@ const appNavigation = () => {
         />
         <Stack.Screen
           options={{headerShown: false}}
-          name="Login"
-          component={Login}
-        />
-        <Stack.Screen
-          options={{headerShown: false}}
           name="AddExpense"
           component={AddExpenseScreen}
         />
@@ -42,6 +38,17 @@ const appNavigation = () => {
           options={{headerShown: false}}
           name="TripExpenses"
           component={TripExpensesScreen}
+        />
+        {/* presentation as a model means a seperate screen will not pop up but a overlay screen comes above the current screen */}
+        <Stack.Screen
+          options={{headerShown: false, presentation: 'modal'}}
+          name="SignIn"
+          component={SignInScreen}
+        />
+        <Stack.Screen
+          options={{headerShown: false, presentation: 'modal'}}
+          name="SignUp"
+          component={SignUpScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
